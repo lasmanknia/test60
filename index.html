@@ -27,22 +27,26 @@
     max-width: 100%;
     height: auto;
 }
-.bloo input {
+.bloo>input {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 20px;
     margin: 20px auto;
     text-align: center;
     border-radius: 20px;
-    font-size: large;
     font-weight: bolder;
     color: white;
     background-color: rgb(0, 166, 255);
 }
-.bloo input::-webkit-file-upload-button {
-  visibility: hidden;
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
 }
 #myDiv {
-    margin: 20px auto;
+    margin: 0 auto;
     width: 300px;
     height: 300px;
     background-size: 100%;
@@ -74,8 +78,8 @@
             color: white;
         }
         .inss .aa{
-            top: 170px;
-            margin-left: 10px;
+            top: 160px;
+            margin-left: 15px;
             font-size: 0.9rem;
         }
         .inss .bb{
@@ -85,12 +89,13 @@
         }
         .inss .cc{
             color: black;
-            top: 315px;
+            top: 307px;
             margin-left: 44px;
             font-size: 1.6rem;
             font-weight: bold;
             color: rgb(203, 34, 34);
         }
+
 </style>
 </head>
 <body>
@@ -110,10 +115,10 @@
     <div id="myDiv">
      <img src="aa.png">
 
-     <div class="inss">
-        <p class="aa">Enter Your Name</p>
-        <p class="bb">Date</p>
-        <p class="cc">BG</p>
+     <div id="haha" class="inss">
+        <p class="aa aa">Enter Name</p>
+        <p class="aa bb">Date</p>
+        <p class="aa cc">BG</p>
      </div>
 
     </div>
@@ -127,20 +132,42 @@
 
 
 ///content ediatble
- // Add event listeners to paragraphs to toggle editability
- const capturedDiv = document.getElementById('myDiv');
-        const paragraphs = capturedDiv.getElementsByTagName('p');
+const editableTexts = document.querySelectorAll(".aa");
 
-        for (const paragraph of paragraphs) {
-            paragraph.addEventListener('click', toggleContentEditable);
-        }
+editableTexts.forEach(function(editableText) {
+    editableText.addEventListener("click", handleEdit);
+    editableText.addEventListener("touchstart", handleEdit);
+});
 
-        function toggleContentEditable(event) {
-            const paragraph = event.target;
-            paragraph.contentEditable = true; // Make it editable
-            paragraph.focus(); // Focus on the paragraph for immediate editing
-            paragraph.removeEventListener('click', toggleContentEditable);
+function handleEdit(event) {
+    event.stopPropagation();
+
+    const text = this.textContent;
+    const parentElement = this; // Store a reference to the parent element
+    const input = document.createElement("input");
+    input.value = text;
+    parentElement.textContent = "";
+    parentElement.appendChild(input);
+    input.focus();
+
+    input.addEventListener("blur", function() {
+        saveText();
+    });
+
+    input.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+            saveText();
         }
+    });
+
+    function saveText() {
+        const newText = input.value;
+        parentElement.removeChild(input);
+        parentElement.textContent = newText;
+    }
+}
+
+
 
     //photo upload
      // JavaScript code
