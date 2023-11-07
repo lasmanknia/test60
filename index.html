@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="style_nav.css">
     <link rel="stylesheet" href="darkmode.css">
 	<style>
+        @font-face {
+            font-family: anik;
+            src: url(anik.ttf);
+        }
 	/* CSS styles */
 .bloo{
     text-align: center;
@@ -51,7 +55,6 @@ input[type=file]::file-selector-button {
     height: 300px;
     background-size: 100%;
     background-repeat: no-repeat;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .bloo img{
     width: 100%;
@@ -66,34 +69,63 @@ input[type=file]::file-selector-button {
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
+.bloo>p{
+    margin: 10px;
+}
 #draggable {
             width: 200px;
             background-color: lightblue;
             cursor: pointer;
-            position: absolute; /* Added missing position property */
+            position: absolute; 
         }
         .inss p{
+            font-family: anik;
             margin: 10px;
-            position: absolute;
             color: white;
         }
-        .inss .aa{
-            top: 160px;
-            margin-left: 15px;
-            font-size: 0.9rem;
-        }
-        .inss .bb{
-            top: 223px;
-            margin-left: 15px;
-            font-size: 0.9rem;
-        }
         .inss .cc{
+            color: rgb(247, 46, 46);
+        }
+        .inss div{
+            position: absolute;
+            text-align: center;
+        }
+        .inss .namm{
+            top: 160px;
+            margin-left: 3px;
+            font-size: 1rem;
+            width: 130px;
+        }
+        .inss .datt{
+            top: 210px;
+            margin-left: 3px;
+            font-size: 1.4rem;
+            width: 130px;
+        }
+        .inss .blodd{
             color: black;
-            top: 307px;
-            margin-left: 44px;
-            font-size: 1.6rem;
+            top: 310px;
+            margin-left: 27px;
+            font-size: 1.4rem;
             font-weight: bold;
-            color: rgb(203, 34, 34);
+            width: 70px;
+
+        }
+        .inss .namm input{
+            border-radius: 10px;
+            width: 100px;
+            background-color: rgba(208, 204, 204, 0);
+        }
+        .inss .datt input{
+            border-radius: 10px;
+            width: 100px;
+            background-color: rgba(208, 204, 204, 0);
+        }
+        .inss .blodd input{
+            border-radius: 10px;
+            width: 30px;
+            padding: 4px;
+            background-color: rgba(208, 204, 204, 0);
         }
 
 </style>
@@ -116,13 +148,13 @@ input[type=file]::file-selector-button {
      <img src="aa.png">
 
      <div id="haha" class="inss">
-        <p class="aa aa">Enter Name</p>
-        <p class="aa bb">Date</p>
-        <p class="aa cc">BG</p>
+        <div class="namm"><p class="aa aa">নাম</p></div>
+        <div class="datt"><p class="aa bb">তারিখ</p></div>
+        <div class="blodd"><p class="aa cc">BG</p></div>
      </div>
 
     </div>
-    <p>Place Your Photo By Touching</p>
+    <p>Drag Your Photo in Position</p>
     <input type="file" id="imageUpload" accept="image/*">
     <button id="convertButton">Download</button>
 
